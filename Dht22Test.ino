@@ -1,14 +1,14 @@
 
 #include <PietteTech_DHT.h> //https://github.com/chaeplin/PietteTech_DHT-8266
 
-//Config
+// Config
 #define DHTPIN 4 // what data pin DHT is connected to
 #define DHTPOWERPIN 5 //power supply of the DHT22 is connected to pin 5 so we can switch it complete off to save energy (and reset if needed)
 #define DHTTYPE AM2302 // DHT Type
 #define LEDPIN 10 // Led pin
 #define VOLTDIVIDER 4.39 //
 
-//declaration
+// declaration
 void dht_wrapper(); // must be declared before the lib initialization
 
 // Lib instantiate
@@ -42,12 +42,10 @@ Serial.begin(115200);
 void loop(void)
 {
 int acquireresult;
-
-//read twice as the first result is cached from last time. suggested by @chaeplin
 delay(2000);
 DHT.acquireAndWait(100);
 delay(2000);
-acquireresult = DHT.acquireAndWait(100);
+acquireresult = DHT.acquireAndWait(100); // read twice as the first result is cached from last time. suggested by @chaeplin
 if ( acquireresult == 0 ) {
 temperature = DHT.getCelsius();
 humidity = DHT.getHumidity();
@@ -61,12 +59,6 @@ Serial.print("Battery (mV): ");
 Serial.println(batvolt);
  delay(10);
 }
-/*h = dht.readHumidity();
-t = dht.readTemperature();
-if (!isnan(h) && !isnan(t)) {
-delay(10);
-sendData();
-}*/
 
 Serial.print("Going to sleep");
 digitalWrite(DHTPOWERPIN, LOW); //Turn off DHT22
