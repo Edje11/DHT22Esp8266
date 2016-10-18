@@ -53,7 +53,7 @@ batvolt= analogRead(A0)* VOLTDIVIDER;
 Serial.println();
 Serial.print("Humidity (%): ");
 Serial.println(humidity, 2);
-Serial.print("Temperature (Â°C): ");
+Serial.print("Temperature (°C): ");
 Serial.println(temperature, 2);
 Serial.print("Battery (mV): ");
 Serial.println(batvolt);
